@@ -6,6 +6,7 @@ from flask import Flask, request, Response
 
 app = Flask(__name__)
 
+os.environ.setdefault('host', 'http://flask-web.351529.xyz')
 host = os.environ.get("host")
 
 
@@ -24,6 +25,7 @@ def proxy(path):
 
     if method == 'GET':
         response = requests.get(url, headers=headers, params=params)
+        print(response.text)
     elif method == 'POST':
         response = requests.post(url, headers=headers, params=params, data=request.data)
     elif method == 'HEAD':
