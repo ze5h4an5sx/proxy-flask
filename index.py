@@ -14,8 +14,9 @@ host = os.environ.get("host")
 def proxy(path):
     if not host:
         return '请先设置 host'
-    
+
     url = f'{host}/{path}'  # 替换为目标地址
+    print(url)
     headers = dict(request.headers)
     headers.pop('Host')
     params = dict(request.args)
