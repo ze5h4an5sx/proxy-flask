@@ -27,7 +27,7 @@ def proxy(path):
 
     if method == 'GET':
         response = requests.get(url, headers=headers, params=params)
-        if len(response.text)<200:
+        if len(response.text) < 200:
             print(response.text)
     elif method == 'POST':
         response = requests.post(url, headers=headers, params=params, data=request.data)
@@ -35,8 +35,12 @@ def proxy(path):
         response = requests.head(url, headers=headers, params=params)
     elif method == 'DELETE':
         response = requests.delete(url, headers=headers, params=params)
+    elif method == 'PUT':
+        response = requests.put(url, headers=headers, params=params, data=request.data)
 
-    print(response.headers)
+    if 'Content-Disposition' in response.headers:
+        response.headers.pop('Content-Disposition')
+    # print(response.headers)
     response = Response(response.content, status=response.status_code, headers=dict(response.headers.items()))
     return response
 
