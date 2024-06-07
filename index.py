@@ -21,13 +21,15 @@ def proxy(path):
     print(url)
     headers = dict(request.headers)
     headers.pop('Host')
-    headers.pop('content-disposition')
+    # headers.pop('content-disposition')
+    print(headers)
     params = dict(request.args)
     method = request.method
 
     if method == 'GET':
         response = requests.get(url, headers=headers, params=params)
-        print(response.text)
+        if len(response)<200:
+            print(response.text)
     elif method == 'POST':
         response = requests.post(url, headers=headers, params=params, data=request.data)
     elif method == 'HEAD':
