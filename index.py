@@ -28,7 +28,7 @@ def proxy(path):
 
     if method == 'GET':
         response = requests.get(url, headers=headers, params=params)
-        if len(response)<200:
+        if len(response.text)<200:
             print(response.text)
     elif method == 'POST':
         response = requests.post(url, headers=headers, params=params, data=request.data)
