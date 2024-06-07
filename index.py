@@ -21,6 +21,7 @@ def proxy(path):
     print(url)
     headers = dict(request.headers)
     headers.pop('Host')
+    headers.pop('content-disposition')
     params = dict(request.args)
     method = request.method
 
