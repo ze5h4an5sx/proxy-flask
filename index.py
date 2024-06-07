@@ -6,8 +6,9 @@ from flask import Flask, request, Response
 
 app = Flask(__name__)
 
-os.environ.setdefault('host', 'http://flask-web.351529.xyz')
-host = os.environ.get("host")
+if not os.environ.get('host'):
+    os.environ.setdefault('host', 'http://flask-web.351529.xyz')
+host = os.environ["host"]
 
 
 @app.route('/', defaults={'path': ''}, methods=['GET', 'POST', 'HEAD', 'DELETE'])
