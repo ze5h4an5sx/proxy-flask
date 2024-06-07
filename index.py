@@ -22,7 +22,6 @@ def proxy(path):
     headers = dict(request.headers)
     headers.pop('Host')
     # headers.pop('content-disposition')
-    print(headers)
     params = dict(request.args)
     method = request.method
 
@@ -37,6 +36,7 @@ def proxy(path):
     elif method == 'DELETE':
         response = requests.delete(url, headers=headers, params=params)
 
+    print(response.headers)
     response = Response(response.content, status=response.status_code, headers=dict(response.headers.items()))
     return response
 
